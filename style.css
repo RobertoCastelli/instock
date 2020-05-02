@@ -1,0 +1,117 @@
+body,
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%; 
+  height: 100%;
+  margin: 0;
+  color: #35485e;
+  font-size: 0.9rem;
+}
+
+.container {
+  padding: 0 15px;
+}
+
+.header-container,
+.footer-container {
+  text-align: center;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px auto;
+}
+
+.modal-container {
+  display: none;
+  position: fixed; 
+  flex-direction: column;
+  top: 0; bottom: 0; left: 0; right: 0; 
+  z-index: 1;
+  justify-content: center; 
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.8);
+}
+
+.modal-wrap {
+  background-color: white;
+  padding: 20px; 
+}
+
+
+button {
+  display: block;
+  color: white;
+  background-color: #35485e;
+  border: white;
+  padding: 10px 15px;
+  transition: all .3s ease-out;
+}
+
+button:hover {
+  background-color: lightgrey;
+  color: #35485e;
+  cursor: pointer;
+}
+
+.btn-invia,
+.btn-back {
+  margin: 20px auto;
+}
+
+input {
+  display: block;
+  border: 0;
+  border-bottom: 1px solid #35485e;
+  color: #35485e;
+  padding: 10px;
+  margin-top: 10px ;
+  height: 10px;
+  outline: none;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+input:focus {
+  color: cadetblue;
+  border-bottom: 1px solid cadetblue;
+}
+
+label {
+  color: cadetblue;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  color: white;
+  background-color: cadetblue;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid lightgrey;
+}
+
+tbody:hover {
+  background-color: lightgrey;
+  transition: .3s ease-out;
+  cursor: pointer;
+}
+
+.table-subtotale {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #35485e;
+}
+

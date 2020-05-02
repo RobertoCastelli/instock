@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <title>magazzino</title>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>MAGAZZINO</h1>
+    </div>
+
+    <div class="filter-container">
+        <label htmlFor="filter-find">
+          <input
+            type="search"
+            name="find"
+            id="filter-find"
+            placeholder="CERCA..."
+            onfocus="this.value = ''"
+          />
+        </label>
+        <button class="btn-open-modal">NEW ITEM</button>
+    </div>
+
+    <div class="modal-container">
+        <div class="modal-wrap">
+          <h2>AGGIUNGI ARTICOLO</h2>
+          <form class="modal-form">
+            <input id="modal-articolo" type="text" />
+            <label htmlFor="modal-articolo">cod.art.</label>
+
+            <input id="modal-descrizione" type="text" />
+            <label htmlFor="modal-descrizione">descrizione</label>
+
+            <input id="modal-fornitore" type="text" />
+            <label htmlFor="modal-fornitore">fornitore</label>
+
+            <input id="modal-ddt" type="text" />
+            <label htmlFor="modal-ddt">ddt</label>
+
+            <input id="modal-euro" type="number" />
+            <label htmlFor="modal-euro">euro</label>
+
+            <input id="modal-quantita" type="number" />
+            <label htmlFor="modal-quantita">q.ta</label>
+
+            <button class="btn-invia">INVIA</button>
+            <button class="btn-back">INDIETRO</button>
+          </form>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table id="table">
+          <thead>
+            <tr>
+              <th>COD.ART.</th>
+              <th>DESCRIZIONE</th>
+              <th>FORNITORE</th>
+              <th>DDT</th>
+              <th>€</th>
+              <th>Q.TA</th>
+              <th>TOTALE</th>
+            </tr>
+          </thead>
+          <!-- <tfoot>
+            <tr>
+              <th colSpan="6">SUBTOTAL</th>
+              <td class="table-subtotale">200</td>
+            </tr>
+          </tfoot>  -->
+        </table>
+      </div>
+    
+    <footer class="footer-container">
+        <p>copyright &copy; 2020 Roberto Castelli</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
