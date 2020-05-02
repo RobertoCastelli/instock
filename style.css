@@ -41,16 +41,19 @@ html {
 .modal-wrap {
   background-color: white;
   padding: 20px; 
+  border-radius: 10px;
 }
 
-
 button {
+  width: 100px;  
   display: block;
   color: white;
   background-color: #35485e;
   border: white;
+  border-radius: 10px;
   padding: 10px 15px;
   transition: all .3s ease-out;
+  outline: none;
 }
 
 button:hover {
@@ -60,8 +63,13 @@ button:hover {
 }
 
 .btn-invia,
-.btn-back {
+.btn-back,
+.btn-delete {
   margin: 20px auto;
+}
+
+.btn-delete {
+background-color: brown;
 }
 
 input {

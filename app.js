@@ -13,13 +13,15 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore() 
 
 
-
 // Variables
 let table = document.getElementById('table')
-// Modal
+let index = ''
+
 let btnModal = document.querySelector('.btn-open-modal')
 let btnInvia = document.querySelector('.btn-invia')
-let btnIndietro = document.querySelector('.btn-back')
+let btnBack = document.querySelector('.btn-back')
+let btnDelete = document.querySelector('.btn-delete')
+
 let modal = document.querySelector('.modal-container')
 let modalArticolo = document.querySelector('#modal-articolo')
 let modalDescrizione = document.querySelector('#modal-descrizione')
@@ -28,11 +30,12 @@ let modalDdt= document.querySelector('#modal-ddt')
 let modalEuro = document.querySelector('#modal-euro')
 let modalQuantita = document.querySelector('#modal-quantita')
 
+
 // Get Data from DB
 function getData() {
-    db.collection('articoli').get().then(snapshot => {
+    db.collection('articoli').where('articolo', '==', 'CG200').orderBy('descrizione').get().then(snapshot => {
         snapshot.forEach(doc => {
-            populateTable(doc.data())
+            populateTable(doc.data(), doc.id)
         })
     })
 }
@@ -51,13 +54,14 @@ btnInvia.addEventListener('click', e => {
     })
         .then(() => {
             console.log('dati inviati correttamente')
-            modal.style.display = 'none'            
+            modal.style.display = 'none'  
+            location.reload()
         })
         .catch(err => console.log(err.message))
 })
 
-// Populate table with DB
-const populateTable = data => {
+// Populate Table with DB
+const populateTable = (data, id) => {
     let row = table.insertRow(1)
     let cell1 = row.insertCell(0)
     let cell2 = row.insertCell(1)
@@ -66,6 +70,7 @@ const populateTable = data => {
     let cell5 = row.insertCell(4)
     let cell6 = row.insertCell(5)
     let cell7 = row.insertCell(6)
+    row.setAttribute('id', id)
     cell1.innerHTML = data.articolo
     cell2.innerHTML = data.descrizione
     cell3.innerHTML = data.fornitore
@@ -75,11 +80,53 @@ const populateTable = data => {
     cell7.innerHTML = data.euro * data.quantita
 }
 
-// Modal handle
-btnModal.addEventListener('click', () => {
+// Modal Button ON
+btnModal.addEventListener('click', e => {
+    e.preventDefault()
     modal.style.display = 'flex'
 })
-btnIndietro.addEventListener('click', () => {
+
+// Modal Button OFF
+btnBack.addEventListener('click', e => {
+    e.preventDefault()
     modal.style.display = 'none'
+    location.reload()
 })
 
+// Modal Button DELETE
+btnDelete.addEventListener('click', e => {
+    e.preventDefault()
+    db.collection('articoli').get().then(snapshot => {
+        snapshot.forEach(doc => {
+            if (doc.id == index) {
+                db.collection('articoli').doc(doc.id).delete()
+                    .then(() => {
+                        console.log('articolo cancellato correttamente')
+                        modal.style.display = 'none'  
+                        location.reload()
+            })
+                    .catch(err => console.log(err.messaggio))
+            }
+        })
+    })
+})
+
+// Modal Import Data
+table.addEventListener('click', e => {
+    let tr = e.target.closest('tr')
+    index += tr.id
+    db.collection('articoli').get().then(snapshot => {
+        snapshot.forEach(doc => {
+            if (doc.id == index) {
+                modal.style.display = 'flex'
+                modalArticolo.value = doc.data().articolo
+                modalDescrizione.value = doc.data().descrizione
+                modalFornitore.value = doc.data().fornitore
+                modalDdt.value = doc.data().ddt
+                modalEuro.value = doc.data().euro
+                modalQuantita.value = doc.data().quantita
+            }
+        })
+    })
+})
+    
