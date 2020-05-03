@@ -31,7 +31,7 @@ let modalDdt = document.querySelector("#modal-ddt");
 let modalEuro = document.querySelector("#modal-euro");
 let modalQuantita = document.querySelector("#modal-quantita");
 
-// Get Timo from DB
+// Get Time from DB
 let timeNow = new Date(
   firebase.firestore.Timestamp.now().seconds * 1000
 ).toLocaleDateString();
@@ -142,6 +142,7 @@ btnEdit.addEventListener("click", (e) => {
               ddt: modalDdt.value,
               euro: modalEuro.value,
               quantita: modalQuantita.value,
+              time: timeNow,
             })
             .then(() => {
               modal.style.display = "none";
@@ -174,6 +175,7 @@ table.addEventListener("click", (e) => {
     });
 });
 
+// Search-Filter Data from DB
 inputSearch.onkeyup = () => {
   let filter = inputSearch.value.toUpperCase();
   const trs = document.querySelectorAll(
