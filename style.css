@@ -1,11 +1,11 @@
 body,
 html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 100%; 
+  width: 100%;
   height: 100%;
   margin: 0;
   color: #35485e;
@@ -29,30 +29,33 @@ html {
 
 .modal-container {
   display: none;
-  position: fixed; 
+  position: fixed;
   flex-direction: column;
-  top: 0; bottom: 0; left: 0; right: 0; 
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   background-color: rgba(128, 128, 128, 0.8);
 }
 
 .modal-wrap {
   background-color: white;
-  padding: 20px; 
+  padding: 20px;
   border-radius: 10px;
 }
 
 button {
-  width: 100px;  
+  width: 100px;
   display: block;
   color: white;
   background-color: #35485e;
   border: white;
   border-radius: 10px;
   padding: 10px 15px;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
   outline: none;
 }
 
@@ -62,14 +65,15 @@ button:hover {
   cursor: pointer;
 }
 
-.btn-invia,
+.btn-send,
+.btn-edit,
 .btn-back,
 .btn-delete {
   margin: 20px auto;
 }
 
 .btn-delete {
-background-color: brown;
+  background-color: brown;
 }
 
 input {
@@ -78,7 +82,7 @@ input {
   border-bottom: 1px solid #35485e;
   color: #35485e;
   padding: 10px;
-  margin-top: 10px ;
+  margin-top: 10px;
   height: 10px;
   outline: none;
   font-size: 1rem;
@@ -104,7 +108,12 @@ th {
   background-color: cadetblue;
 }
 
-th, td {
+td {
+  cursor: pointer;
+}
+
+th,
+td {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid lightgrey;
@@ -112,7 +121,7 @@ th, td {
 
 tbody:hover {
   background-color: lightgrey;
-  transition: .3s ease-out;
+  transition: 0.3s ease-out;
   cursor: pointer;
 }
 
@@ -122,4 +131,3 @@ tbody:hover {
   color: white;
   background-color: #35485e;
 }
-
