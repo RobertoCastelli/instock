@@ -31,6 +31,11 @@ let modalDdt = document.querySelector("#modal-ddt");
 let modalEuro = document.querySelector("#modal-euro");
 let modalQuantita = document.querySelector("#modal-quantita");
 
+// Get Timo from DB
+let timeNow = new Date(
+  firebase.firestore.Timestamp.now().seconds * 1000
+).toLocaleDateString();
+
 // Get Data from DB
 function getData() {
   db.collection("articoli")
@@ -55,6 +60,7 @@ btnSend.addEventListener("click", (e) => {
       ddt: modalDdt.value,
       euro: modalEuro.value,
       quantita: modalQuantita.value,
+      time: timeNow,
     })
     .then(() => {
       modal.style.display = "none";
@@ -73,6 +79,7 @@ const populateTable = (data, id) => {
   let cell5 = row.insertCell(4);
   let cell6 = row.insertCell(5);
   let cell7 = row.insertCell(6);
+  let cell8 = row.insertCell(7);
   row.setAttribute("id", id);
   cell1.innerHTML = data.articolo.toUpperCase();
   cell2.innerHTML = data.descrizione.toUpperCase();
@@ -81,6 +88,7 @@ const populateTable = (data, id) => {
   cell5.innerHTML = data.euro;
   cell6.innerHTML = data.quantita;
   cell7.innerHTML = data.euro * data.quantita;
+  cell8.innerHTML = data.time;
 };
 
 // Modal Button ON
@@ -168,7 +176,9 @@ table.addEventListener("click", (e) => {
 
 inputSearch.onkeyup = () => {
   let filter = inputSearch.value.toUpperCase();
-  const trs = document.querySelectorAll("#table tr:not(.table-header)");
+  const trs = document.querySelectorAll(
+    "#table tr:not(.table-header):not(.table-footer)"
+  );
   trs.forEach(
     (tr) =>
       (tr.style.display = [...tr.children].find((td) =>
@@ -182,7 +192,6 @@ inputSearch.onkeyup = () => {
 // input.onkeyup = () => {
 //   let tr = document.querySelectorAll("tr");
 //   tr.forEach((item) => {
-//     console.log(item.textContent.toUpperCase().indexOf(input));
 //     if (item.textContent.toUpperCase().indexOf(filter) !== -1) {
 //       item.closest("tr").style.display = "";
 //     } else {
