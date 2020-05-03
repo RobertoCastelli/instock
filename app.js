@@ -14,7 +14,7 @@ const db = firebase.firestore();
 
 // Variables
 let table = document.getElementById("table");
-let input = document.getElementById("filter-find");
+let inputSearch = document.getElementById("myInput");
 let index = "";
 
 let btnModal = document.querySelector(".btn-open-modal");
@@ -30,19 +30,6 @@ let modalFornitore = document.querySelector("#modal-fornitore");
 let modalDdt = document.querySelector("#modal-ddt");
 let modalEuro = document.querySelector("#modal-euro");
 let modalQuantita = document.querySelector("#modal-quantita");
-
-// db.collection("articoli")
-//   .orderBy("descrizione")
-//   .onSnapshot((snapshot) => {
-//     let changes = snapshot.docChanges();
-//     changes.forEach((change) => {
-//       if (change.type == "added") {
-//         populateTable(change.doc.data(), change.doc.id);
-//       } else if ((change.type = "removed")) {
-//         console.log("hi");
-//       }
-//     });
-//   });
 
 // Get Data from DB
 function getData() {
@@ -178,6 +165,19 @@ table.addEventListener("click", (e) => {
       });
     });
 });
+
+inputSearch.onkeyup = () => {
+  let filter = inputSearch.value.toUpperCase();
+  const trs = document.querySelectorAll("#table tr:not(.table-header)");
+  trs.forEach(
+    (tr) =>
+      (tr.style.display = [...tr.children].find((td) =>
+        td.innerHTML.toUpperCase().includes(filter)
+      )
+        ? ""
+        : "none")
+  );
+};
 
 // input.onkeyup = () => {
 //   let tr = document.querySelectorAll("tr");

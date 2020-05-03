@@ -14,78 +14,80 @@
     <title>magazzino</title>
   </head>
   <body>
-    <div class="header-container">
-      <h1>MAGAZZINO</h1>
-    </div>
-
-    <div class="filter-container">
-      <label for="filter-find">
-        <input
-          type="search"
-          name="find"
-          id="filter-find"
-          placeholder="CERCA..."
-          onfocus="this.value = ''"
-        />
-      </label>
-      <button class="btn-open-modal">INSERISCI</button>
-    </div>
-
-    <div class="modal-container">
-      <div class="modal-wrap">
-        <h2>GESTISCI ARTICOLO</h2>
-        <form class="modal-form">
-          <input id="modal-articolo" type="text" />
-          <label htmlFor="modal-articolo">cod.art.</label>
-
-          <input id="modal-descrizione" type="text" />
-          <label htmlFor="modal-descrizione">descrizione</label>
-
-          <input id="modal-fornitore" type="text" />
-          <label htmlFor="modal-fornitore">fornitore</label>
-
-          <input id="modal-ddt" type="text" />
-          <label htmlFor="modal-ddt">ddt</label>
-
-          <input id="modal-euro" type="number" />
-          <label htmlFor="modal-euro">euro</label>
-
-          <input id="modal-quantita" type="number" />
-          <label htmlFor="modal-quantita">q.ta</label>
-
-          <button class="btn-send">INVIA</button>
-          <button class="btn-edit">MODIFICA</button>
-          <button class="btn-back">ANNULLA</button>
-          <button class="btn-delete">CANCELLA</button>
-        </form>
+    <div class="container">
+      <div class="header-container">
+        <h1>MAGAZZINO</h1>
       </div>
-    </div>
 
-    <div class="table-container">
-      <table id="table">
-        <thead>
-          <tr>
-            <th>COD.ART.</th>
-            <th>DESCRIZIONE</th>
-            <th>FORNITORE</th>
-            <th>DDT</th>
-            <th>€</th>
-            <th>Q.TA</th>
-            <th>TOTALE</th>
-          </tr>
-        </thead>
-        <!-- <tfoot>
+      <div class="filter-container">
+        <label for="filter-find">
+          <input
+            type="search"
+            name="find"
+            id="myInput"
+            placeholder="CERCA..."
+            onfocus="this.value = ''"
+          />
+        </label>
+        <button class="btn-open-modal">INSERISCI</button>
+      </div>
+
+      <div class="modal-container">
+        <div class="modal-wrap">
+          <h2>GESTISCI ARTICOLO</h2>
+          <form class="modal-form">
+            <input id="modal-articolo" type="text" />
+            <label htmlFor="modal-articolo">cod.art.</label>
+
+            <input id="modal-descrizione" type="text" />
+            <label htmlFor="modal-descrizione">descrizione</label>
+
+            <input id="modal-fornitore" type="text" />
+            <label htmlFor="modal-fornitore">fornitore</label>
+
+            <input id="modal-ddt" type="text" />
+            <label htmlFor="modal-ddt">ddt</label>
+
+            <input id="modal-euro" type="number" />
+            <label htmlFor="modal-euro">euro</label>
+
+            <input id="modal-quantita" type="number" />
+            <label htmlFor="modal-quantita">q.ta</label>
+
+            <button class="btn-send">INVIA</button>
+            <button class="btn-edit">MODIFICA</button>
+            <button class="btn-back">ANNULLA</button>
+            <button class="btn-delete">CANCELLA</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table id="table">
+          <thead>
+            <tr class="table-header">
+              <th>COD.ART.</th>
+              <th>DESCRIZIONE</th>
+              <th>FORNITORE</th>
+              <th>DDT</th>
+              <th>€</th>
+              <th>Q.TA</th>
+              <th>TOTALE</th>
+            </tr>
+          </thead>
+          <!-- <tfoot>
             <tr>
               <th colSpan="6">SUBTOTAL</th>
               <td class="table-subtotale">200</td>
             </tr>
           </tfoot>  -->
-      </table>
+        </table>
+      </div>
+      <footer class="footer-container">
+        <p>copyright &copy; 2020 Roberto Castelli</p>
+      </footer>
     </div>
 
-    <footer class="footer-container">
-      <p>copyright &copy; 2020 Roberto Castelli</p>
-    </footer>
     <script src="app.js"></script>
   </body>
 </html>
