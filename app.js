@@ -15,8 +15,8 @@ const db = firebase.firestore();
 // Global Variables
 let table = document.querySelector("#table");
 let inputSearch = document.getElementById("myInput");
+let subtotal = document.querySelector("#subtotale");
 let index = "";
-let total = 0;
 
 // Buttons Variables
 let btnModal = document.querySelector(".btn-open-modal");
@@ -40,6 +40,14 @@ let timeNow = new Date(
   firebase.firestore.Timestamp.now().seconds * 1000
 ).toLocaleDateString();
 
+// Sum column TOTALE
+function handleTotals() {
+  let total = 0;
+  let tds = table.querySelectorAll("#table > tbody > tr > td:nth-child(9)");
+  tds.forEach((el) => (total += parseFloat(el.textContent)));
+  subtotal.innerText = total;
+}
+
 // Get Data from DB
 function getData() {
   db.collection("articoli")
@@ -49,7 +57,8 @@ function getData() {
       snapshot.forEach((doc) => {
         populateTable(doc.data(), doc.id);
       });
-    });
+    })
+    .then(handleTotals);
 }
 getData();
 
@@ -62,10 +71,10 @@ btnSend.addEventListener("click", (e) => {
       descrizione: modalDescrizione.value.toUpperCase(),
       fornitore: modalFornitore.value.toUpperCase(),
       ddt: modalDdt.value,
+      time: timeNow,
       cantiere: modalCantiere.value.toUpperCase(),
       euro: modalEuro.value,
       quantita: modalQuantita.value,
-      time: timeNow,
     })
     .then(() => {
       modal.style.display = "none";
@@ -85,10 +94,10 @@ const populateTable = (data, id) => {
         <td>${data.fornitore.toUpperCase()}</td>
         <td>${data.ddt.toUpperCase()}</td>
         <td>${data.cantiere.toUpperCase()}</td>
-        <td>${data.euro}</td>
-        <td>${data.quantita}</td>
-        <td class="totale">${data.quantita * data.euro}</td>
         <td>${data.time}</td>
+        <td>${data.quantita}</td>
+        <td>${data.euro}</td>
+        <td class="totale">${data.quantita * data.euro}</td>
       </tr>  
     </tbody>`,
   ];
@@ -197,9 +206,6 @@ inputSearch.onkeyup = () => {
         : "none")
   );
 };
-
-let td = table.querySelectorAll("tbody td");
-td.forEach((item) => console.log());
 
 // old input search mechanics
 // trs.forEach((tr) => {

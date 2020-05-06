@@ -19,13 +19,26 @@ body {
   flex-direction: column;
 }
 
-.header-container,
-.footer-container {
-  color: white;
-  text-align: center;
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: url("img/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  font-size: large;
+  height: 150px;
+  color: white;
+  box-shadow: 0 10px 15px grey;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: large;
+  height: 150px;
+  background-color: lightgrey;
 }
 
 .filter-container {
@@ -56,6 +69,17 @@ body {
 .table-container {
   flex-grow: 1;
   background: white;
+}
+
+.subtotale {
+  margin: 30px;
+  text-align: right;
+  font-weight: bold;
+  font-size: large;
+}
+
+span {
+  color: brown;
 }
 
 button {
@@ -132,11 +156,4 @@ td {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid lightgrey;
-}
-
-.table-subtotale {
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: white;
-  background-color: #35485e;
 }
