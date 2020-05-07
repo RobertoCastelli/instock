@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * 2 decimali dopo la virgola
+ * limitare numero lettere input
+ */
+
 // Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyBOEO8T6kPiKf4OQJhhQEC-3nojny4XlJQ",
@@ -40,7 +46,7 @@ let timeNow = new Date(
   firebase.firestore.Timestamp.now().seconds * 1000
 ).toLocaleDateString();
 
-// Sum column TOTALE
+// Sum all column 8 import  TOTALE
 function handleTotals() {
   let total = 0;
   let tds = table.querySelectorAll("#table > tbody > tr > td:nth-child(9)");
@@ -192,51 +198,27 @@ table.addEventListener("click", (e) => {
 
 // Search-Filter Data from Table
 inputSearch.onkeyup = () => {
+  let total = [];
   let filter = inputSearch.value.toUpperCase();
   const trs = document.querySelectorAll(
     "#table tr:not(.table-header):not(.table-footer)"
   );
-
-  trs.forEach(
-    (tr) =>
-      (tr.style.display = [...tr.children].find((td) =>
-        td.innerHTML.toUpperCase().includes(filter)
-      )
-        ? ""
-        : "none")
-  );
+  trs.forEach((tr) => {
+    if (
+      // Find input in TDs
+      [...tr.children].find((td) => td.innerHTML.toUpperCase().includes(filter))
+    ) {
+      // Display if filtered
+      tr.style.display = "";
+      // Get all TDs import of column 8
+      let tds = parseInt(tr.children[8].textContent);
+      total.push(tds);
+    } else {
+      // Don't display if not filtered
+      tr.style.display = "none";
+      subtotal.innerText = "Nessun articolo in lista";
+    }
+  });
+  // Sum all TDs import column 8
+  subtotal.innerText = total.reduce((a, b) => a + b);
 };
-
-// old input search mechanics
-// trs.forEach((tr) => {
-//   if (
-//     [...tr.children].find((td) => td.innerHTML.toUpperCase().includes(filter))
-//   ) {
-//     tr.style.display = "";
-//   } else {
-//     tr.style.display = "none";
-//   }
-// });
-
-// Old inject data
-// let row = table.insertRow(1);
-// let cell1 = row.insertCell(0);
-// let cell2 = row.insertCell(1);
-// let cell3 = row.insertCell(2);
-// let cell4 = row.insertCell(3);
-// let cell5 = row.insertCell(4);
-// let cell6 = row.insertCell(5);
-// let cell7 = row.insertCell(6);
-// let cell8 = row.insertCell(7);
-// let cell9 = row.insertCell(8);
-// row.setAttribute("id", id);
-// cell1.innerHTML = data.articolo.toUpperCase();
-// cell2.innerHTML = data.descrizione.toUpperCase();
-// cell3.innerHTML = data.fornitore.toUpperCase();
-// cell4.innerHTML = data.ddt.toUpperCase();
-// cell5.innerHTML = data.cantiere.toUpperCase();
-// cell6.innerHTML = data.euro;
-// cell7.innerHTML = data.quantita;
-// cell8.innerHTML = data.euro * data.quantita;
-// cell9.innerHTML = data.time;
-// cell8.setAttribute("total", data.euro * data.quantita);
