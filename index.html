@@ -36,25 +36,25 @@
         <div class="modal-wrap">
           <h2>GESTISCI ARTICOLO</h2>
           <form class="modal-form">
-            <input id="modal-articolo" type="text" required />
+            <input id="modal-articolo" type="text" maxlength="10" required />
             <label htmlFor="modal-articolo">cod.art.</label>
 
-            <input id="modal-descrizione" type="text" required />
+            <input id="modal-descrizione" type="text" maxlength="10" required />
             <label htmlFor="modal-descrizione">descrizione</label>
 
-            <input id="modal-fornitore" type="text" required />
+            <input id="modal-fornitore" type="text" maxlength="10" required />
             <label htmlFor="modal-fornitore">fornitore</label>
 
-            <input id="modal-ddt" type="text" required />
+            <input id="modal-ddt" type="text" maxlength="10" required />
             <label htmlFor="modal-ddt">ddt</label>
 
-            <input id="modal-cantiere" type="text" required />
+            <input id="modal-cantiere" type="text" maxlength="10" required />
             <label htmlFor="modal-cantiere">cantiere</label>
 
-            <input id="modal-euro" type="number" required />
+            <input id="modal-euro" type="number" min="1" required />
             <label htmlFor="modal-euro">euro</label>
 
-            <input id="modal-quantita" type="number" required />
+            <input id="modal-quantita" type="number" min="1" required />
             <label htmlFor="modal-quantita">q.ta</label>
 
             <button class="btn-send">INVIA</button>

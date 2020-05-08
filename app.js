@@ -126,22 +126,27 @@ btnBack.addEventListener("click", (e) => {
 // Modal DELETE button
 btnDelete.addEventListener("click", (e) => {
   e.preventDefault();
-  db.collection("articoli")
-    .get()
-    .then((snapshot) => {
-      snapshot.forEach((doc) => {
-        if (doc.id == index) {
-          db.collection("articoli")
-            .doc(doc.id)
-            .delete()
-            .then(() => {
-              modal.style.display = "none";
-              location.reload();
-            })
-            .catch((err) => console.log(err.messaggio));
-        }
+  const conferma = confirm("Premi OK per cancellare");
+  if (conferma) {
+    db.collection("articoli")
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          if (doc.id == index) {
+            db.collection("articoli")
+              .doc(doc.id)
+              .delete()
+              .then(() => {
+                modal.style.display = "none";
+                location.reload();
+              })
+              .catch((err) => console.log(err.messaggio));
+          }
+        });
       });
-    });
+  } else {
+    console.log("Dati non cancellati");
+  }
 });
 
 // Modal EDIT button
